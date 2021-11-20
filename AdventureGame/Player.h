@@ -2,6 +2,7 @@
 
 #include <string>
 #include <iostream>
+#include "Area.h"
 /*For this step in the project, you will set up the basic Player and Area classes and test them out. 
 
 Your Player should have health and attack values, and a string for the name of the Area they are currently in.
@@ -20,5 +21,6 @@ public:
 
 	int health;
 	int damage;
-	std::string currentArea;
+	Area& currentArea = area;
+	Area area;
 };

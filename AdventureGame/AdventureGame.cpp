@@ -19,31 +19,43 @@ You may want to add a help command, or look into ways to adapt input better (suc
 int main()
 {
     Player player;
-    Area startingArea("Starting Area", "Area where player starts");
-    Area dungeon("Dungeon", "Contains enemies");
+    Area startingArea("Starting Area", "This is where the player starts");
+    Area dungeon("dungeon", "Contains enemies");
     Area cave("Cave", "A dark cave.");
-    std::string currentArea = startingArea.name;
+    player.currentArea = startingArea;
     std::string command;
     std::string target;
     bool isPlaying = true;
     std::cout << "Hello World!\n";
 
+    Area& dungeonRef = dungeon;
+    Area& caveRef = cave;
 
+
+    startingArea.exits.push_back(&dungeonRef);
+    startingArea.exits.push_back(&caveRef);
+
+    /*for (size_t i = 0; i < startingArea.exits.size(); ++i)
+    {
+       std::cout << "Name: " << player.currentArea.exits[i]->name;
+    }*/
 
     while (isPlaying)
     {
         std::cout << "Please enter a command\n";
         std::cin >> command;
-        std::transform(command.begin(), command.end(), command.begin(), ::tolower);
+        //std::transform(command.begin(), command.end(), command.begin(), ::tolower);
+
         if (command == "look")
         {
             std::cout << "What do you want to look at?\n";
             std::cin >> target;
+
             if (target == "area")
             {
-                std::cout << "You look at the " << player.currentArea << "\n";
+                player.currentArea.Look();
             }
-            else 
+            else
             {
                 std::cout << "You look at the " << target << "\n";
             }
@@ -51,19 +63,18 @@ int main()
         }
         else if (command == "go")
         {
-            std::cout << "Where do you want to go?\n";
+            std::cout << "Where do you want to go?" << std::endl << std::endl;
             std::cin >> target;
-            std::cout << "You go to the" << target << "\n";
-            player.currentArea == target;
+            player.currentArea.Go(player,target);
         }
         else if (command == "exit")
         {
             isPlaying = false;
         }
     }
-
-        
+    return 0;
 }
+
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
