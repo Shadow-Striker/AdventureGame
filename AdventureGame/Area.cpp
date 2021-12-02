@@ -25,7 +25,8 @@ void Area::Look()
 	std::cout << "You look around at the " << name << "." << std::endl;
 	std::cout << description << std::endl;
 	std::cout << "The " << name << " contains these exits: ";
-	for (size_t i = 0; i < exits.size(); ++i)
+	std::cout << "Exits not showing up.";
+	for (int i = 0; i < exits.size(); ++i)
 	{
 		std::cout << "Exit: " << exits[i]->name;
 	}
