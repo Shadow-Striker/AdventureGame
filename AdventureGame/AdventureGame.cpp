@@ -22,23 +22,15 @@ int main()
     Area startingArea("Starting Area", "This is where the player starts");
     Area dungeon("dungeon", "Contains enemies");
     Area cave("Cave", "A dark cave.");
-    player.currentArea = startingArea;
     std::string command;
     std::string target;
     bool isPlaying = true;
     std::cout << "Hello World!\n";
 
-    Area& dungeonRef = dungeon;
-    Area& caveRef = cave;
+    startingArea.GetExits().push_back(&dungeon);
+    startingArea.GetExits().push_back(&cave);
 
-
-    startingArea.exits.push_back(&dungeonRef);
-    startingArea.exits.push_back(&caveRef);
-
-    /*for (size_t i = 0; i < startingArea.exits.size(); ++i)
-    {
-       std::cout << "Name: " << player.currentArea.exits[i]->name;
-    }*/
+    player.SetCurrentArea(&startingArea);
 
     while (isPlaying)
     {
@@ -53,11 +45,13 @@ int main()
 
             if (target == "area")
             {
-                player.currentArea.Look();
+                Area* tempPtr = player.GetCurrentArea();
+                tempPtr->Look();
             }
             else
             {
-                std::cout << "You look at the " << target << "\n";
+                std::cout << "Sorry, I didn't understand the target \"" << target << "\"" << std::endl;
+                
             }
 
         }
@@ -65,7 +59,8 @@ int main()
         {
             std::cout << "Where do you want to go?" << std::endl << std::endl;
             std::cin >> target;
-            player.currentArea.Go(player,target);
+            Area* tempPtr = player.GetCurrentArea();
+            tempPtr->Go(player,target);
         }
         else if (command == "exit")
         {

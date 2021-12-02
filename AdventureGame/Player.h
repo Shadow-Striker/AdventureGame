@@ -19,8 +19,13 @@ public:
 	Player();
 	~Player();
 
+
+private:
 	int health;
 	int damage;
-	Area& currentArea = area;
-	Area area;
+	Area* currentArea;
+
+public: 
+	void SetCurrentArea(Area* _area);
+	Area* GetCurrentArea();
 };

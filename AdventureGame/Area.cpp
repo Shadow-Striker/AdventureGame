@@ -27,8 +27,8 @@ void Area::Look()
 	std::cout << "The " << name << " contains these exits: ";
 	for (size_t i = 0; i < exits.size(); ++i)
 	{
-		std::cout << "Exit: " << exits[i];
-	};
+		std::cout << "Exit: " << exits[i]->name;
+	}
 }
 
 void Area::Go(Player& _player, std::string _target)
@@ -38,9 +38,14 @@ void Area::Go(Player& _player, std::string _target)
 		if (exits[i]->name == _target)
 		{
 			std::cout << "You go to: " << _target;
-			_player.currentArea = *exits[i];
+			_player.SetCurrentArea(exits[i]);
 			break;
 		}
 	}
 	std::cout << "Could not find: " << _target;
+}
+
+std::vector<Area*> Area::GetExits()
+{
+	return exits;
 }

@@ -14,7 +14,12 @@ public:
 	void Look();
 	void Go(Player& _player, std::string _target);
 
+private:
+
 	 std::string name;
 	 std::string description;
 	 std::vector<Area*> exits;
+
+public: 
+	std::vector<Area*> GetExits();
 };
