@@ -1,10 +1,11 @@
 #pragma once
 #include <iostream>
 #include <vector>
+#include "Thing.h"
 //Your Area should have a nameand description, the name of the Area connected to this one,
 //and should have a Look() function that would be called if the player looks at this Area.
 class Player;
-class Area
+class Area : public Thing
 {
 public:
 
@@ -15,9 +16,6 @@ public:
 	void Go(Player& _player, std::string _target);
 
 private:
-
-	 std::string name;
-	 std::string description;
 	 std::vector<Area*> exits;
 
 public: 
