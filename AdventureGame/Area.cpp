@@ -3,17 +3,16 @@
 #include <iostream>
 #include <string>
 Area::Area()
-	: name("Test Name")
-	, description("This is a description")
-	, exits()
+	: exits()
 {
 }
 
 Area::Area(std::string _name, std::string _description)
+	: Thing()
 	: name(_name)
 	, description(_description)
-	, exits()
 {
+
 }
 
 Area::~Area()

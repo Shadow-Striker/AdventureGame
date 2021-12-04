@@ -18,6 +18,7 @@ public:
 private:
 	 std::vector<Area*> exits;
 
+
 public: 
 	std::vector<Area*> GetExits();
 };

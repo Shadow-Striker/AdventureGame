@@ -4,6 +4,8 @@
 class Thing
 {
 public:
+	Thing();
+	~Thing();
 	void Look();
 
 protected:

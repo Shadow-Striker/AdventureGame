@@ -3,6 +3,7 @@
 class Creature : public Thing
 {
 public:
+	Creature();
 	void Look();
 
 protected:

@@ -1,4 +1,6 @@
 #include "Thing.h"
+#include <string>
+#include <iostream>
 
 Thing::Thing()
 	:name("Name")
@@ -6,6 +8,10 @@ Thing::Thing()
 {
 
 	
+}
+
+Thing::~Thing()
+{
 }
 
 void Thing::Look()
