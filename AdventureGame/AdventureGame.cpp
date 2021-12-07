@@ -18,7 +18,7 @@ You may want to add a help command, or look into ways to adapt input better (suc
 
 int main()
 {
-    Player player;
+    Player player(100,10);
     Area startingArea("Starting Area", "This is where the player starts");
     Area dungeon("dungeon", "Contains enemies");
     Area cave("Cave", "A dark cave.");
@@ -27,14 +27,16 @@ int main()
     bool isPlaying = true;
     std::cout << "Hello World!\n";
 
-    startingArea.GetExits().push_back(&dungeon);
-    startingArea.GetExits().push_back(&cave);
+    startingArea.AddExit(&dungeon);
+    startingArea.AddExit(&cave);
+    dungeon.AddExit(&cave);
+    dungeon.AddExit(&startingArea);
 
     player.SetCurrentArea(&startingArea);
 
     while (isPlaying)
     {
-        std::cout << "Please enter a command\n";
+        std::cout << "\nPlease enter a command:\n";
         std::cin >> command;
         //std::transform(command.begin(), command.end(), command.begin(), ::tolower);
 
@@ -60,7 +62,7 @@ int main()
             std::cout << "Where do you want to go?" << std::endl << std::endl;
             std::cin >> target;
             Area* tempPtr = player.GetCurrentArea();
-            tempPtr->Go(player,target);
+            tempPtr->Go(&player,target);
         }
         else if (command == "exit")
         {

@@ -17,7 +17,7 @@ class Player : public Creature
 {
 public:
 
-	Player();
+	Player(int _health, int _damage);
 	~Player();
 
 

@@ -9,16 +9,16 @@ class Area : public Thing
 {
 public:
 
-	Area();
 	Area(std::string _name, std::string _description);
 	~Area();
 	void Look();
-	void Go(Player& _player, std::string _target);
+	void Go(Player* _player, std::string _target);
 
 private:
 	 std::vector<Area*> exits;
 
 
 public: 
-	std::vector<Area*> GetExits();
+	//std::vector<Area*> GetExits();
+	void AddExit(Area* _exit);
 };

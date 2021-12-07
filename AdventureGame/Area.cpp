@@ -2,18 +2,17 @@
 #include "Player.h"
 #include <iostream>
 #include <string>
-Area::Area()
-	: exits()
-{
-}
-
 Area::Area(std::string _name, std::string _description)
+	: exits()
+	, Thing(_name, _description)
+{
+}
+
+/*Area::Area(std::string _name, std::string _description)
 	: Thing()
-	: name(_name)
-	, description(_description)
 {
 
-}
+}*/
 
 Area::~Area()
 {
@@ -23,29 +22,38 @@ void Area::Look()
 {
 	std::cout << "You look around at the " << name << "." << std::endl;
 	std::cout << description << std::endl;
-	std::cout << "The " << name << " contains these exits: ";
-	std::cout << "Exits not showing up.";
+	std::cout << "The " << name << " contains these exits: \n";
 	for (int i = 0; i < exits.size(); ++i)
 	{
-		std::cout << "Exit: " << exits[i]->name;
+		std::cout << "Exit: " << exits[i]->name << "\n";
 	}
 }
 
-void Area::Go(Player& _player, std::string _target)
+void Area::Go(Player* _player, std::string _target)
 {
 	for (size_t i = 0; i < exits.size(); i++)
 	{
 		if (exits[i]->name == _target)
 		{
 			std::cout << "You go to: " << _target;
-			_player.SetCurrentArea(exits[i]);
-			break;
+			_player->SetCurrentArea(exits[i]);
+			return;
+		}
+		else if (_target == _player->GetCurrentArea()->name)
+		{
+			std::cout << "\n You are curently in the " << _target << "!";
+			return;
 		}
 	}
 	std::cout << "Could not find: " << _target;
 }
 
-std::vector<Area*> Area::GetExits()
+//std::vector<Area*> Area::GetExits()
+//{
+//	return exits;
+//}
+
+void Area::AddExit(Area* _exit)
 {
-	return exits;
+	exits.push_back(_exit);
 }

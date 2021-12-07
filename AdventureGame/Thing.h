@@ -5,6 +5,7 @@ class Thing
 {
 public:
 	Thing();
+	Thing(std::string _name, std::string _description);
 	~Thing();
 	void Look();
 

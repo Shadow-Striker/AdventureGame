@@ -10,6 +10,12 @@ Thing::Thing()
 	
 }
 
+Thing::Thing(std::string _name, std::string _description)
+{
+	name = _name;
+	description = _description;
+}
+
 Thing::~Thing()
 {
 }
